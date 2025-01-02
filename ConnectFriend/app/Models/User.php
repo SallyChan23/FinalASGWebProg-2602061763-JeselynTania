@@ -9,7 +9,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = 'user'; // Ensure it uses the correct table
+    protected $table = 'user'; 
     protected $primaryKey = 'id';
 
     protected $fillable = [
@@ -29,6 +29,20 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function reverseWishlist()
+    {
+        return $this->hasMany(Wishlist::class, 'wishlist_user_id', 'id');
+    }
+
+    public function unreadNotificationsCount()
+    {
+        return Wishlist::where('wishlist_user_id', $this->id)
+            ->whereDoesntHave('reverseWishlist', function ($query) {
+                $query->where('user_id', $this->id);
+            })
+            ->count();
+    }
 }
 
 

@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('user', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Match with 'name'
+            $table->string('name'); 
             $table->string('email')->unique();
             $table->string('password');
             $table->enum('gender', ['Male', 'Female']);
-            $table->json('field_of_work'); // Match with 'field_of_work'
+            $table->json('field_of_work'); 
             $table->string('linkedin_username');
             $table->string('mobile_number');
             $table->integer('registration_fee');
