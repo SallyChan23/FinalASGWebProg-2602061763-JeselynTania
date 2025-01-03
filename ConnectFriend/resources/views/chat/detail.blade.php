@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="chat-container">
-        <h1 class="chat-header">Chat with {{ $receiver->name }}</h1>
+        <h1 class="chat-header">{{ $receiver->name }}</h1>
 
         <div class="chat-box" id="chat-box">
             @if ($messages->isEmpty())
@@ -40,7 +40,7 @@
     }
 
     .chat-header {
-        background: #007bff;
+        background: grey;
         color: #fff;
         padding: 10px 20px;
         font-size: 18px;
@@ -73,7 +73,7 @@
         padding: 10px 15px;
         border-radius: 20px;
         color: #fff;
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .chat-sent .chat-bubble {
@@ -82,7 +82,7 @@
     }
 
     .chat-received .chat-bubble {
-        background: #6c757d;
+        background: #4C585B;
         border-bottom-left-radius: 0;
     }
 

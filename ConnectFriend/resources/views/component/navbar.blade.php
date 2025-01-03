@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg" style="background-color: #F5EFE7;">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ route('home') }}">Connect Friend</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('profile.update') }}">Profile</a>
                 </li>
@@ -20,45 +20,35 @@
                     <a class="nav-link" href="{{ route('notifications') }}">
                         Notification
                         @if ($notificationCount > 0)
-                            <span class="badge badge-danger">{{ $notificationCount }}</span>
+                            <span class="badge badge-danger notification-count";">{{ $notificationCount }}</span>
                         @endif
                     </a>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Language
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('set-locale', ['locale' => 'en']) }}">English</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('set-locale', ['locale' => 'id']) }}">Bahasa Indonesia</a>
+                        </li>
+                    </ul>
                 </li>
+                
+                
             </ul>
         </div>
     </div>
 </nav>
 
 <style>
-    .badge-danger {
-    background-color: red;
-    color: white;
-    font-size: 12px;
-    padding: 2px 6px;
-    border-radius: 50%;
-    margin-left: 5px;
+    .notification-count {
+    color: red;
+    font-weight: bold;
+    margin-left: 0px; 
 }
 </style>
-
-<script>
-    function updateUnreadCount() {
-        fetch("{{ route('notifications.count') }}")
-            .then(response => response.json())
-            .then(data => {
-                const countElement = document.getElementById('unread-count');
-                if (data.count > 0) {
-                    countElement.style.display = 'inline';
-                    countElement.textContent = data.count;
-                } else {
-                    countElement.style.display = 'none';
-                }
-            });
-    }
-
-    setInterval(updateUnreadCount, 30000); // Update every 30 seconds
-    document.addEventListener('DOMContentLoaded', updateUnreadCount);
-</script>

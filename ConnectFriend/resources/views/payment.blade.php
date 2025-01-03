@@ -91,4 +91,12 @@
         </form>
     </div>
 </body>
+<style>
+    body{
+        font-family: "Merriweather", serif;
+        font-weight: 400;
+        font-style: normal;
+        background-color: #FFFDF0 ;
+    }
+</style>
 </html>

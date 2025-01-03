@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\View;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Chat;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 class AppServiceProvider extends ServiceProvider
 {

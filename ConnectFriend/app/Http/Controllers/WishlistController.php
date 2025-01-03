@@ -11,17 +11,40 @@ class WishlistController extends Controller
 {
     public function addToWishlist(Request $request)
     {
+        // $user = Auth::user();
+        // $wishlistUserId = $request->input('wishlist_user_id');
+
+        // if ($wishlistUserId && $wishlistUserId != $user->id) {
+        //     DB::table('wishlists')->insert([
+        //         'user_id' => $user->id,
+        //         'wishlist_user_id' => $wishlistUserId,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ]);
+        //     return back()->with('success', 'User added to wishlist.');
+        // }
+
+        // return back()->with('error', 'Invalid user.');
+
         $user = Auth::user();
-        $wishlistUserId = $request->input('wishlist_user_id');
+    $wishlistUserId = $request->input('wishlist_user_id');
 
         if ($wishlistUserId && $wishlistUserId != $user->id) {
-            DB::table('wishlists')->insert([
-                'user_id' => $user->id,
-                'wishlist_user_id' => $wishlistUserId,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-            return back()->with('success', 'User added to wishlist.');
+            $exists = Wishlist::where('user_id', $user->id)
+                ->where('wishlist_user_id', $wishlistUserId)
+                ->exists();
+
+            if (!$exists) {
+                // Tambahkan ke wishlist
+                Wishlist::create([
+                    'user_id' => $user->id,
+                    'wishlist_user_id' => $wishlistUserId,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+
+            return back()->with('success', 'You are now following this user.');
         }
 
         return back()->with('error', 'Invalid user.');
@@ -80,29 +103,5 @@ class WishlistController extends Controller
         return redirect()->route('notifications')->with('error', 'Friend request not found.');
     }
 
-    // public function acceptRequest($id)
-    // {
-    //     $user = Auth::user();
     
-    //     // Check if a request exists from the given user
-    //     $incomingRequest = Wishlist::where('user_id', $id)
-    //         ->where('wishlist_user_id', $user->id)
-    //         ->first();
-    
-    //     if ($incomingRequest) {
-    //         // Add the reciprocal connection
-    //         Wishlist::updateOrCreate(
-    //             ['user_id' => $user->id, 'wishlist_user_id' => $id],
-    //             ['created_at' => now(), 'updated_at' => now()]
-    //         );
-    
-    //         // Remove the original friend request
-    //         $incomingRequest->delete();
-    
-    //         // Redirect with success message
-    //         return redirect()->route('notifications')->with('success', 'Friend request accepted.');
-    //     }
-    
-    //     return redirect()->route('notifications')->with('error', 'Friend request not found.');
-    // }
 }

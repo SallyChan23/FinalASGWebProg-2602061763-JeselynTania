@@ -6,7 +6,8 @@
     <title>Payment Confirmation</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: "Merriweather", serif;
+            font-weight: 400;
             background-color: #f4f4f9;
             margin: 0;
             padding: 0;
@@ -73,4 +74,5 @@
         </form>
     </div>
 </body>
+
 </html>

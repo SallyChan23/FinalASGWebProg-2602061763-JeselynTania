@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+SA:wght@100..400&display=swap" rel="stylesheet">
 </head>
-<body class="bg-light">
+<body style="background-color: #F5EFE7;">
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card shadow">
-                    <div class="card-header bg-primary text-white text-center">
-                        <h4>Registration Form</h4>
+                    <div class="card-header text-white text-center" >
+                        <h4 style="color:black">Registration Form</h4>
                     </div>
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -82,7 +85,7 @@
                                 <p>{{ $registration_fee }}</p>
                             </div>
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">Register</button>
+                                <button type="submit" class="btn btn-primary btn-sm">Register</button>
                             </div>
                         </form>
                     </div>
@@ -92,4 +95,15 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
+<style>
+    body{
+        font-family: "Merriweather", serif;
+        font-weight: 400;
+        font-style: normal;
+        background-color: #FFFDF0 ;
+    }
+
+
+</style>
 </html>

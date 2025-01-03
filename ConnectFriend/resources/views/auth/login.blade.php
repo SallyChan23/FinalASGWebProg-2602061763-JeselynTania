@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="d-flex justify-content-center align-items-center vh-100" style="background-color: #f4f7f0;">
+    <div class="d-flex justify-content-center align-items-center vh-100" style="background-color: #F5EFE7;">
         <div class="card p-4" style="width: 400px;">
             <h3 class="text-center mb-4">Login</h3>
 
@@ -47,4 +47,13 @@
         </div>
     </div>
 </body>
+
+<style>
+    body{
+        font-family: "Merriweather", serif;
+        font-weight: 400;
+        font-style: normal;
+        background-color: #FFFDF0 ;
+    }
+</style>
 </html>
