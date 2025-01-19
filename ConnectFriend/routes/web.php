@@ -10,7 +10,15 @@ use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Log;
 use App\Http\Middleware\SetLocale;
 
-Route::middleware(SetLocale::class)->group(function () {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+
+    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware(SetLocale::class, 'auth')->group(function () {
 
     Route::get('/set-locale/{locale}', function ($locale) {
         if (in_array($locale, ['en', 'id'])) {
@@ -24,16 +32,8 @@ Route::middleware(SetLocale::class)->group(function () {
     })->name('set-locale');
 
     Route::get('/home', [HomeController::class, 'index'])
-    ->name('home')
-    ->middleware('auth');
+    ->name('home');
 
-    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [AuthController::class, 'login']);
-
-    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
-    Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
-
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/payment', [AuthController::class, 'payment'])->name('payment');
     Route::post('/payment', [AuthController::class, 'processPayment'])->name('payment.submit');
